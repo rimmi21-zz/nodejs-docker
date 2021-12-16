@@ -38,9 +38,24 @@ Then, we must make sure our `package.json` file and `index.js` file are availabl
 
 `COPY ./ ./`
 
-and then, we run our image, like this:
+But, before we directly use this, inorder to save all our changes that we do to the index.js file, we need to make sure the build process goes error free. So we divide the COPY instruction into two parts. One to install npm, that would require only the package.json file. So we define it in this order:
+
+`COPY ./package.json ./`
+
+and then, we run npm, like this:
 
 `RUN npm install`
+
+and then, we define the second COPY instruction
+
+`COPY ./ ./`
+
+Now, anytime we make changes to our index.js file, it will not invalidate the
+
+`COPY ./package.json ./`
+`RUN npm install`
+
+cache for the processes above. So now, even if we build the dockerfile again anad again, anything that's above these 2 above commands, till these 2 above commands, will not be rebuild.
 
 Now, for the final step, we create our startup command, like this:
 
