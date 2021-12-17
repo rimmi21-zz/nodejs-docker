@@ -4,6 +4,8 @@
 
 In this blog we learn to create a Node.js Application, wrap it inside of a docker container and then be able to access the web application from a browser running in our local machine.
 
+## Begin
+
 To begin, we first create a new folder from our terminal. I'd name it `nodejs-docker`.
 
 `mkdir nodejs-docker`
